@@ -13,10 +13,14 @@ $(document).ready(function(){
      		url: queryURL,
         	method: "GET"
       	}).done(function(response) {
-
       		for(var i = 0; i < response.data.length; i++){
-      			var image = $("<img>").attr("src", response.data[i].images.fixed_width_still.url).attr("value", response.data[i].images.fixed_width.url);
-        		$("#content").prepend(image);
+        		
+        		var element = "<div><h3>Rating: "+response.data[i].rating+
+        		"</h3><img src='"+response.data[i].images.fixed_width_still.url+
+        		"' value='"+response.data[i].images.fixed_width.url+
+        		"'></div>";
+
+        		$("#content").prepend(element);
       		}
       	});
 	});
@@ -34,9 +38,13 @@ $(document).ready(function(){
 
 		var newItem = $("#add-animal").val();
 
-		topics.push(newItem);
+		if(topics.indexOf(newItem) == -1 && newItem != ""){
+			topics.push(newItem);
+		}
 
 		createButtons();
+
+		$("#add-animal").val("");
 	});
 });
 

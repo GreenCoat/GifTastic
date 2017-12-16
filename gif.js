@@ -4,7 +4,7 @@ $(document).ready(function(){
 	createButtons();
 
 	$(document).on("click", ".button", function(event){
-		$("img").remove();
+		$(".gif").remove();
 		var animal = event.target.innerHTML;
 
 		var queryURL = "https://api.giphy.com/v1/gifs/search?q="+animal+"&limit=10&api_key=dc6zaTOxFJmzC";
@@ -15,7 +15,7 @@ $(document).ready(function(){
       	}).done(function(response) {
       		for(var i = 0; i < response.data.length; i++){
         		
-        		var element = "<div><h3>Rating: "+response.data[i].rating+
+        		var element = "<div class='gif'><h3>Rating: "+response.data[i].rating+
         		"</h3><img src='"+response.data[i].images.fixed_width_still.url+
         		"' value='"+response.data[i].images.fixed_width.url+
         		"'></div>";
